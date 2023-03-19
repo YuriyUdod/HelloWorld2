@@ -72,7 +72,7 @@ resource "aws_instance" "lamp" {
 sudo apt-get update
 sudo apt-get install -y ansible git
 git clone https://github.com/YuriyUdod/HelloWorld2.git
-cd HelloWorld
+cd HelloWorld2
 ansible-playbook playbook.yml  --extra-vars "mysql_root_password=${var.mysql_root_password}"
 EOF
 
