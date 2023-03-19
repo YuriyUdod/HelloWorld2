@@ -61,7 +61,34 @@
         state: absent
         login_user: root
         login_password: "{{ mysql_root_password }}"
+        
+    - name: создать БД
+      mysql_db:
+        name: ipcount
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
     
+    - name: и таблицу в БД
+      mysql_db:
+        name: ipcount
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        login_host: localhost
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        collation: utf8_general_ci
+        encoding: utf8
+        target: iplist
+        columns:
+          - id:
+              type: INT UNSIGNED NOT NULL AUTO_INCREMENT
+              key: PRIMARY
+          - ipa:
+              type: VARCHAR(50)
+          - kol:
+              type: INT   
+              
     - name: поставить страничку свою
       template:
         src: "files/info.php"
