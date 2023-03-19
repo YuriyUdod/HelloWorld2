@@ -69,25 +69,14 @@
         login_user: root
         login_password: "{{ mysql_root_password }}"
     
-    - name: и таблицу в БД
-      mysql_db:
-        name: ipcount
-        state: present
+    - name: Run several insert queries against db test_db in single transaction
+      mysql_query:
+        login_db: ipcount
         login_user: root
         login_password: "{{ mysql_root_password }}"
-        login_host: localhost
-        login_unix_socket: /var/run/mysqld/mysqld.sock
-        collation: utf8_general_ci
-        encoding: utf8
-        target: iplist
-        columns:
-          - id:
-              type: INT UNSIGNED NOT NULL AUTO_INCREMENT
-              key: PRIMARY
-          - ipa:
-              type: VARCHAR(50)
-          - kol:
-              type: INT   
+        query:
+          - create table iplist (id INT UNSIGNED NOT NULL AUTO_INCREMENT,ipa VARCHAR (50),kol int, PRIMARY KEY (id))
+        single_transaction: true  
               
     - name: поставить страничку свою
       template:
