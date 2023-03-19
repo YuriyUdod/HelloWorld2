@@ -62,12 +62,12 @@ $userLocationData = new GeoPRequest();
 $userLocationData->getIp()->infoByIp();
 
 
-//   $host = 'localhost';
-//   $db_name = 'ipcount';
-//   $user = '';
-//   $password = '';
-//   $ipa = $userLocationData->userIp;
-//   $kol = 0;
+   $host = 'localhost';
+   $db_name = 'ipcount';
+   $user = 'root';
+   $password = '{{ mysql_root_password }}';
+   $ipa = $userLocationData->userIp;
+   $kol = 0;
 
 //   $connection = mysqli_connect($host, $user, $password, $db_name);
 //   $query = "SELECT ipa, kol, dl  FROM iplist where ipa='$ipa'";
